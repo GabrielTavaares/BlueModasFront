@@ -1,0 +1,38 @@
+main {
+  display: flex;
+  grid-template-columns: 2fr 3.5fr;
+  width: 100vw;
+  height: 100vh;
+  background-color: #7f85ee75;
+}
+
+.container {
+  display: flex;
+  -webkit-display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+  padding: 6%;
+  // margin: 0;
+}
+
+.bluebag {
+  animation-name: effectSplashScreen;
+
+  animation-duration: 1500ms;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 10000;
+}
+@keyframes effectSplashScreen {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
