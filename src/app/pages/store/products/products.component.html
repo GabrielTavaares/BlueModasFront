@@ -1,7 +1,7 @@
-<div class="container">
-    <div class="row">
+<div class="container ">
+    <div class="row d-flex justify-content-center w-100">
         <div class="card text-dark m-2" style="width: 18rem;" *ngFor="let product of productList">
-            <img [src]="product.imagem_url" class="card-img-top" height="300" width="200">
+            <img [src]="product.imagem_url" class="card-img-top " height="300" width="200">
             <div class="card-body d-flex justify-content-center">
                 <div class="container-fluid p-0">
                     <div class="row w-100 card-title">
@@ -10,11 +10,26 @@
                     <div class="row card-text text-center">
                         <p class="fs-3">{{product.preco | currency:'R$'}}</p>
                     </div>
-                    <div class="row card-footer" style="background-color: white;">
-                        <a href="#" class="btn btn-primary text-center">Go somewhere</a>
+                    <div class="row card-footer d-flex justify-content-center" style="background-color: white;">
+                        <div class="d-flex justify-content-center align-items-center div-input-amount"
+                            style="z-index: 2;">
+                            <button class="btn-amount" type="button" (click)="decrement(product)">
+                                <i class="fas fa-minus fa-2x icon-amount"></i>
+                            </button>
+
+                            <input type="number" (blur)="changeValue(product)" min="0" class="input-amount-product"
+                                style="z-index: 2;">
+
+                            <button class="btn-amount" type="button" (click)="increment(product)">
+                                <i class="fas fa-plus fa-2x icon-amount"></i>
+                            </button>
+                        </div>
+                        <div class="row mt-4">
+                            <button name="" id="" class="btn btn-primary" role="button">Adicionar</button>
+                        </div>
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
     </div>
 </div>
