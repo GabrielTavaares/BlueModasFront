@@ -1,1 +1,20 @@
-<button type="submit" class="btn btn-primary">ALOU</button>
+<div class="container">
+    <div class="row">
+        <div class="card text-dark m-2" style="width: 18rem;" *ngFor="let product of productList">
+            <img [src]="product.imagem_url" class="card-img-top" height="300" width="200">
+            <div class="card-body d-flex justify-content-center">
+                <div class="container-fluid p-0">
+                    <div class="row w-100 card-title">
+                        <h5 class="">{{product.nome}}</h5>
+                    </div>
+                    <div class="row card-text text-center">
+                        <p class="fs-3">{{product.preco | currency:'R$'}}</p>
+                    </div>
+                    <div class="row card-footer" style="background-color: white;">
+                        <a href="#" class="btn btn-primary text-center">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+</div>
