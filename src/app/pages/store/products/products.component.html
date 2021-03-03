@@ -13,19 +13,19 @@
                     <div class="row card-footer d-flex justify-content-center" style="background-color: white;">
                         <div class="d-flex justify-content-center align-items-center div-input-amount"
                             style="z-index: 2;">
-                            <button class="btn-amount" type="button" (click)="decrement(product)">
+                            <button class="btn-amount d-flex justify-content-center align-items-center" type="button" (click)="decrement(product)">
                                 <i class="fas fa-minus fa-2x icon-amount"></i>
                             </button>
 
-                            <input type="number" (blur)="changeValue(product)" min="0" class="input-amount-product"
+                            <input type="number" (blur)="changeValue(product)" [value]="product.quantidade" min="0" class="input-amount-product"
                                 style="z-index: 2;">
 
-                            <button class="btn-amount" type="button" (click)="increment(product)">
+                            <button class="btn-amount d-flex justify-content-center align-items-center" type="button" (click)="increment(product)">
                                 <i class="fas fa-plus fa-2x icon-amount"></i>
                             </button>
                         </div>
                         <div class="row mt-4">
-                            <button name="" id="" class="btn btn-primary" role="button">Adicionar</button>
+                            <button name="" id="" class="btn btn-primary button-add-cart" role="button" [disabled]="product.isAdd" (click)="addCart(product)">Adicionar</button>
                         </div>
                     </div>
                 </div>

@@ -1,1 +1,22 @@
-<p>shopping-bag works!</p>
+<div class="container-fluid">
+    <h2>Sacola de compras</h2>
+    <hr>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="card mb-3 w-100" style="max-width: 1000px;" *ngFor="let product of cartProduct">
+                <div class="row g-0">
+                  <div class="col-md-2 d-flex justify-content-center">
+                    <img [src]="product.imagem_url" height="150" width="auto">
+                  </div>
+                  <div class="col-md-10">
+                    <div class="card-body">
+                      <h5 class="card-title">{{product.nome}}</h5>
+                      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>            
+        </div>
+    </div>
+</div>
