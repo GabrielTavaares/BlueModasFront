@@ -26,4 +26,18 @@ export class ShoppingBagComponent implements OnInit {
     console.log(this.cartProduct);
   }
 
+  increment(index) {
+    index.quantidade = index.quantidade + 1;
+    index.isAdd = false;
+  }
+
+  decrement(index) {
+    if (index.quantidade < 1) {
+      index.quantidade = 0;
+    } else {
+      index.quantidade = index.quantidade - 1;
+    }
+    index.isAdd = false;
+  }
+
 }

@@ -1,0 +1,35 @@
+.centerMatSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay {
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.404);
+    z-index: 10;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+
+.loading {
+    animation-name: opacityOffAndOn;
+    animation-duration: 1500ms;
+    animation-delay: 2ms;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 10000;
+}
+
+@keyframes opacityOffAndOn {    
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}

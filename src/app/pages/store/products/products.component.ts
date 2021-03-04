@@ -16,7 +16,8 @@ export class ProductsComponent implements OnInit {
 
   productList: any [] = [];
   cartProduct: any [] = [];
-  isAdd: boolean; 
+  isAdd: boolean;
+  loading: boolean = false; 
 
   constructor(
     private productService: ProductService,
@@ -28,12 +29,17 @@ export class ProductsComponent implements OnInit {
   }
 
   getAllProducts(){
+    this.loading = true;
     this.productService.getAll().then(res => {
       this.productList = res;
       
       for (let index = 0; index < this.productList.length; index++) {
         this.productList[index].quantidade = 0;
       }
+
+      setTimeout(() => {
+        this.loading = false;        
+      }, 2000);
       
     }).catch(error => {
       console.log(error)

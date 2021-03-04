@@ -1,0 +1,36 @@
+
+.input-amount-product {
+    width: 70%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-align: center;
+    font-size: 22px;
+}
+
+.icon-amount {
+    color: #0d6efd;
+    transform: scale(0.7);
+}
+
+.div-input-amount {
+    border: 1px solid black;
+    border-radius: 30px 30px 30px 30px;
+    z-index: 2;
+}
+
+.button-add-cart {
+    border-radius: 30px 30px 30px 30px;
+}
+
+.btn-amount {
+    background: transparent;
+    border: none !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}

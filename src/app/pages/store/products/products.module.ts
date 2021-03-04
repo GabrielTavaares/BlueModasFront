@@ -4,6 +4,7 @@ import { ProductsComponent } from './products.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask'
+import { LoadingModule } from '../../../../utils/loading/loading.module';
 
 
 
@@ -14,6 +15,7 @@ import { NgxMaskModule } from 'ngx-mask'
     ProductsRoutingModule,
     HttpClientModule,
     NgxMaskModule.forRoot(),
+    LoadingModule
   ]
 })
 export class ProductsModule { }
