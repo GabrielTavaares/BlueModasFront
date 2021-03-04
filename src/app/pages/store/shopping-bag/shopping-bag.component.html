@@ -1,36 +1,72 @@
 <div class="container-fluid">
   <h2>Sacola de compras</h2>
   <hr>
-  <div class="container-fluid">
+  <div class="container-fluid mt-3 mb-3">
     <div class="row d-flex justify-content-center">
+
       <div class="card mb-3 w-100" style="max-width: 1000px;" *ngFor="let product of cartProduct">
         <div class="row g-0">
-          <div class="col-md-2 d-flex justify-content-center">
+
+          <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 d-flex justify-content-start align-items-center">
+            <i (click)="removeItem(product._id)" class="fas fa-trash fa-lg mt-2" style="cursor: pointer;"></i>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center">
             <img [src]="product.imagem_url" height="150" width="auto">
           </div>
-          <div class="col-md-10 h-100">
-            <div class="card-body container-fluid h-100">
-              <div class="row card-title">
-                <h5 class="">{{product.nome}}</h5>
-              </div>
-              <div class="row">
-                <div class="d-flex col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-justify-content-center align-items-center div-input-amount" style="z-index: 2;">
-                  <button class="btn-amount d-flex justify-content-center align-items-center" type="button"
-                    (click)="decrement(product)">
-                    <i class="fas fa-minus fa-2x icon-amount"></i>
-                  </button>
 
-                  <input type="number" (blur)="changeValue(product)" [value]="product.quantidade" min="0"
-                    class="input-amount-product" style="z-index: 2;">
+          <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7">
+            <div class="card-body container-fluid h-100 d-flex align-items-center justify-content-center">
 
-                  <button class="btn-amount d-flex justify-content-center align-items-center" type="button"
-                    (click)="increment(product)">
-                    <i class="fas fa-plus fa-2x icon-amount"></i>
-                  </button>
+              <div class="row w-100">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex align-items-center">
+                  <h2 class="m-0">{{product.nome}}</h2>
                 </div>
+
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 d-flex justify-content-center">
+                  <div class="d-flex justify-content-center align-items-center w-100 div-input-amount"
+                    style="z-index: 2;">
+                    <button class="btn-amount d-flex justify-content-center align-items-center" type="button"
+                      (click)="decrement(product)">
+                      <i class="fas fa-minus fa-2x icon-amount"></i>
+                    </button>
+
+                    <input type="number" (blur)="changeValue(product)" [value]="product.quantidade" min="0"
+                      class="input-amount-product" style="z-index: 2;">
+
+                    <button class="btn-amount d-flex justify-content-center align-items-center" type="button"
+                      (click)="increment(product)">
+                      <i class="fas fa-plus fa-2x icon-amount"></i>
+                    </button>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
+          <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center align-items-center">
+            <!-- <h3>Total</h3> -->
+            <h2 class="m-0">{{product.quantidade * product.preco | currency: 'R$'}}</h2>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="container w-100" style="max-width: 1000px;">
+        <hr>
+      </div>
+      <div class="container d-flex justify-content-end w-100" style="max-width: 1000px;">
+        <div class="row">
+          <h2>Total: 1000.000</h2>
+        </div>
+
+
+      </div>
+      <div class="container d-flex justify-content-end w-100" style="max-width: 1000px;">
+        <div class="row">
+          <button mat-raised-button class="btn btn-primary" (click)="checkout()">Finalizar compra</button>
         </div>
       </div>
     </div>

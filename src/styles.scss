@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+html, body { height: 100%; }
+.container-add {
+    mat-dialog-container {
+        width: 100%;
+        min-width: 300px;
+        z-index: 0;
+        background-color: white;
+        color: #333;
+    }
+}

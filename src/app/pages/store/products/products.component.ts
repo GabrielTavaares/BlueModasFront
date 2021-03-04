@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/core/service/product.service';
 import { StorageKey } from 'src/app/core/service/storage/storage.model';
 import { StorageService } from 'src/app/core/service/storage/store.service';
+import { InformationComponent } from 'src/utils/information/information.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 const { CART_PRODUCT } = StorageKey;
 
@@ -18,10 +20,11 @@ export class ProductsComponent implements OnInit {
   cartProduct: any [] = [];
   isAdd: boolean;
   loading: boolean = false; 
-
+  dialogInformation: MatDialogRef<InformationComponent>;
   constructor(
     private productService: ProductService,
-    private storage: StorageService
+    private storage: StorageService,
+    private dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -65,7 +68,7 @@ export class ProductsComponent implements OnInit {
 
     const indexCart = this.cartProduct.findIndex(item => item._id == index._id);
 
-    if (index.amount_value != 0) {
+    if (index.quantidade != 0) {
       index.isAdd = true;
       if (this.cartProduct.length < 1) {
         this.cartProduct.push(index);
@@ -78,14 +81,14 @@ export class ProductsComponent implements OnInit {
         }
       }
     } else {
-      // this.dialogInformation = this.dialog.open(InformationComponent, {
-      //   panelClass: 'container-add',
-      //   disableClose: true,
-      //   data: {
-      //     error: true,
-      //     message: 'A quantidade do produto deve ser maior que zero.'
-      //   }
-      // })
+      this.dialogInformation = this.dialog.open(InformationComponent, {
+        panelClass: 'container-add',
+        disableClose: true,
+        data: {
+          error: true,
+          message: 'A quantidade do produto deve ser maior que zero.'
+        }
+      })
     }
 
     console.log(this.cartProduct);

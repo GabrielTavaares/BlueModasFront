@@ -1,1 +1,75 @@
-<p>identification works!</p>
+<div class="container-fluid">
+    <h2>Identificação do cliente</h2>
+    <hr>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"></div>
+
+        <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 p-0 form-login-side d-flex justify-content-center align-items-center">
+            <div class="container-fluid p-0 mat-elevation-z4">
+                <mat-card>
+                    <mat-card-header class="d-block mb-3 align-items-center justify-content-center">
+                        <h2 class="text-center">Dados do cliente</h2>
+                        <!-- <img src="/assets/images/logo-completa.png" class="img-fluid" width="300" alt=""> -->
+                    </mat-card-header>
+                    <mat-card-content>
+                        <form [formGroup]="formCheckout">
+                            <div class="input-group mb-2 d-flex align-items-center justify-content-center">
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Digite o seu nome completo</mat-label>
+                                    <input matInput formControlName="name">
+                                    <mat-error
+                                        *ngIf="formCheckout.controls.name.invalid && formCheckout.controls.name.touched">
+                                        <span color="accent" *ngIf="formCheckout.controls.name.errors?.required">
+                                            O nome é obrigatório!
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="input-group mb-2 d-flex align-items-center justify-content-center">
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Digite o seu telefone</mat-label>
+                                    <input matInput formControlName="phone" [mask]="'(00) 0 0000-0000'">
+                                    <mat-error
+                                        *ngIf="formCheckout.controls.phone.invalid && formCheckout.controls.phone.touched">
+                                        <span color="accent" *ngIf="formCheckout.controls.phone.errors?.required">
+                                            O telefone é obrigatório!
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="input-group mb-2 d-flex align-items-center justify-content-center">
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>Digite o seu e-mail</mat-label>
+                                    <input matInput placeholder="exemplo@exemplo.com" formControlName="email">
+                                    <mat-error
+                                        *ngIf="formCheckout.controls.email.invalid && formCheckout.controls.email.touched">
+                                        <span color="accent" *ngIf="formCheckout.controls.email.errors?.required">
+                                            O e-mail é obrigatório!
+                                        </span>
+                                        <span color="accent" *ngIf="formCheckout.controls.email.errors?.email">
+                                            O formato do e-mail digitado não é válido!
+                                        </span>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>                           
+
+                        </form>
+                    </mat-card-content>
+
+                    <mat-card-actions class="d-flex align-items-center mx-auto justify-content-center" align="center">
+                        <div class="container-fluid mx-auto">
+                            <div class="mb-2">
+                                <button class="btn-login" [disabled]="formCheckout.invalid" mat-raised-button (click)="confirm()"
+                                    color="primary">Confirmar</button>
+                            </div>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3"></div>
+    </div>
+</div>
