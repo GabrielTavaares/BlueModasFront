@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderComponent } from './order.component';
@@ -9,7 +10,8 @@ import { OrderRoutingModule } from './order-routing.module';
   declarations: [OrderComponent],
   imports: [
     CommonModule,
-    OrderRoutingModule
+    OrderRoutingModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class OrderModule { }

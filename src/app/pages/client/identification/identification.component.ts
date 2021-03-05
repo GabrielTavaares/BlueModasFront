@@ -36,31 +36,37 @@ export class IdentificationComponent implements OnInit {
   }
 
   confirm() {
-    console.log(this.formCheckout.value);
+    
     this.dialogConfirm = this.dialog.open(ConfirmComponent, {
       panelClass: 'container-add'
     });
 
     this.dialogConfirm.afterClosed().subscribe(res => {
       if (res) {
+        const products = this.storage.read(CART_PRODUCT);
+        const preco = products.map(i => i.preco*i.quantidade);
 
         this.order = (this.storage.read(ORDER) || []);
-        console.log(this.order)
         
+
         const auxOrder = {
-          products: this.storage.read(CART_PRODUCT),
-          identification: this.formCheckout.value
+          orderNumber: Date(),
+          products: products,
+          identification: this.formCheckout.value,
+          total: preco.reduce((acum, preco) => acum + preco)
         };
 
-          this.order.push(auxOrder);
-          this.storage.remove(ORDER);
-          this.storage.save(ORDER, this.order);
-          console.log(this.order);
+        
 
-        // this.storage.remove(CART_PRODUCT);
+        this.order.push(auxOrder);
+        this.storage.remove(ORDER);
+        this.storage.save(ORDER, this.order);
+        
+
+        this.storage.remove(CART_PRODUCT);
 
 
-        // this.router.navigate(['main/client/order']);
+        this.router.navigate(['main/client/order']);
       }
     })
   }

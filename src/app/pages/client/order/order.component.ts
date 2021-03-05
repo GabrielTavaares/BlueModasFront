@@ -11,6 +11,8 @@ const { ORDER } = StorageKey
 export class OrderComponent implements OnInit {
 
   order: any [] = [];
+  orderEmpty: boolean = false;
+
 
   constructor(
     private storage: StorageService
@@ -21,8 +23,10 @@ export class OrderComponent implements OnInit {
   }
 
   setOrder(){
-    this.order = this.storage.read(ORDER);
-    console.log(this.order);
+    this.order = (this.storage.read(ORDER) || []);
+    console.log(this.order)
+    this.orderEmpty = (this.order.length < 1)
+    
   }
 
 }

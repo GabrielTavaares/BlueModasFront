@@ -15,6 +15,8 @@ const { CART_PRODUCT } = StorageKey;
 export class ShoppingBagComponent implements OnInit {
 
   cartProduct: any[] = [];
+  cartEmpty: boolean = false;
+  total: number;
   dialogRemoveItem: MatDialogRef<RemoveItemComponent>;
 
   constructor(
@@ -28,52 +30,53 @@ export class ShoppingBagComponent implements OnInit {
   }
 
   setCartProduct() {
-    this.cartProduct = this.storage.read(CART_PRODUCT);
+    this.cartProduct = (this.storage.read(CART_PRODUCT) || []);
+    this.cartEmpty = (this.cartProduct.length < 1);
+    if (!this.cartEmpty) {
+      this.countTotal();
+    }
   }
 
   increment(index) {
     index.quantidade = index.quantidade + 1;
     index.isAdd = false;
+    this.countTotal();
   }
 
   decrement(index) {
-    if (index.quantidade < 1) {
-      index.quantidade = 0;
+    if (index.quantidade <= 1) {
+      // index.quantidade = 0;
+      this.removeItem(index);
     } else {
       index.quantidade = index.quantidade - 1;
     }
     index.isAdd = false;
+    this.countTotal();
   }
 
-  removeItem(id) {
-
+  removeItem(product) {
     this.dialogRemoveItem = this.dialog.open(RemoveItemComponent, {
       panelClass: 'container-add'
     });
 
     this.dialogRemoveItem.afterClosed().subscribe(res => {
+
       if (res) {
-        const indexItemRemove = this.cartProduct.findIndex(item => item._id == id);
-
-
-        this.cartProduct = this.cartProduct.slice(indexItemRemove, 1);
-        // console.log(indexItemRemove, cartProduct);
-
-
+        this.cartProduct.splice(this.cartProduct.indexOf(product), 1)
         this.storage.remove(CART_PRODUCT);
         this.storage.save(CART_PRODUCT, this.cartProduct);
-
         this.setCartProduct();
-
-
-        // console.log(this.storage.read(CART_PRODUCT));
       }
     });
+  }
 
+  countTotal() {
+    const preco = this.cartProduct.map(i => i.preco * i.quantidade);
+    this.total = preco.reduce((acum, preco) => acum + preco);
   }
 
 
-  checkout(){
+  checkout() {
     this.storage.remove(CART_PRODUCT);
     this.storage.save(CART_PRODUCT, this.cartProduct);
     this.router.navigate(['/main/client/identification']);

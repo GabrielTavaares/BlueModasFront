@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
       }, 2000);
       
     }).catch(error => {
-      console.log(error)
+      
     })
   }
 
@@ -91,7 +91,7 @@ export class ProductsComponent implements OnInit {
       })
     }
 
-    console.log(this.cartProduct);
+    
 
     this.storage.save(CART_PRODUCT, this.cartProduct);
   }

@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <h2>Sacola de compras</h2>
   <hr>
-  <div class="container-fluid mt-3 mb-3">
+  <div class="container-fluid mt-3 mb-3" *ngIf="!cartEmpty">
     <div class="row d-flex justify-content-center">
 
       <div class="card mb-3 w-100" style="max-width: 1000px;" *ngFor="let product of cartProduct">
         <div class="row g-0">
 
           <div class="col-12 col-sm-12 col-md-1 col-lg-1 col-xl-1 d-flex justify-content-start align-items-center">
-            <i (click)="removeItem(product._id)" class="fas fa-trash fa-lg mt-2" style="cursor: pointer;"></i>
+            <i (click)="removeItem(product)" class="fas fa-trash fa-lg mt-2" style="cursor: pointer;"></i>
           </div>
 
           <div class="col-12 col-sm-12 col-md-2 col-lg-2 col-xl-2 d-flex justify-content-center">
@@ -59,16 +59,19 @@
       </div>
       <div class="container d-flex justify-content-end w-100" style="max-width: 1000px;">
         <div class="row">
-          <h2>Total: 1000.000</h2>
+          <h2>Total: {{(total | currency:'R$')}}</h2>
         </div>
 
 
       </div>
-      <div class="container d-flex justify-content-end w-100" style="max-width: 1000px;">
+      <div class="container d-flex justify-content-end w-100 mb-3" style="max-width: 1000px;">
         <div class="row">
           <button mat-raised-button class="btn btn-primary" (click)="checkout()">Finalizar compra</button>
         </div>
       </div>
     </div>
   </div>
+  <div class="row d-flex justify-content-center" *ngIf="cartEmpty">
+    <h1 class="text-center">Não existem itens na sacola.</h1>
+</div>
 </div>
