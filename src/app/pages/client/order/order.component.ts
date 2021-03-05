@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageKey } from 'src/app/core/service/storage/storage.model';
+import { StorageService } from 'src/app/core/service/storage/store.service';
+const { ORDER } = StorageKey
 
 @Component({
   selector: 'app-order',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
-  constructor() { }
+  order: any [] = [];
+
+  constructor(
+    private storage: StorageService
+  ) { }
 
   ngOnInit(): void {
+    this.setOrder();
+  }
+
+  setOrder(){
+    this.order = this.storage.read(ORDER);
+    console.log(this.order);
   }
 
 }
+

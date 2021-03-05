@@ -1,1 +1,19 @@
-<p>order works!</p>
+<div class="container-fluid">
+    <h2>Pedido realizado</h2>
+    <hr>
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 w-100" style="max-width: 1000px;">
+            <div class="row d-flex justify-content-center">
+                <div class="card m-2" style="width: 18rem;" *ngFor="let order of order">
+                    <div class="card-body">
+                        <h5 class="card-title">NUMERO PEDIDO</h5>
+                        <h2 class="card-title">{{order.identification.name}}</h2>
+                        <ul class="list-group list-group-flush" *ngFor="let product of order.products">
+                            <li class="list-group-item">{{product.nome}}</li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
