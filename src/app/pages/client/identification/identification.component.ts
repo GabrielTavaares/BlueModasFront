@@ -5,6 +5,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/core/service/storage/store.service';
 import { StorageKey } from 'src/app/core/service/storage/storage.model';
+import { OrderService } from 'src/app/core/service/order.service';
+import { InformationComponent } from 'src/utils/information/information.component';
 const { ORDER, CART_PRODUCT } = StorageKey
 
 
@@ -17,6 +19,7 @@ const { ORDER, CART_PRODUCT } = StorageKey
 export class IdentificationComponent implements OnInit {
 
   dialogConfirm: MatDialogRef<ConfirmComponent>
+  dialogInformation: MatDialogRef<InformationComponent>
   order: any[] = [];
 
   formCheckout = this.fb.group({
@@ -29,7 +32,8 @@ export class IdentificationComponent implements OnInit {
     private fb: FormBuilder,
     private dialog: MatDialog,
     private router: Router,
-    private storage: StorageService
+    private storage: StorageService,
+    private orderService: OrderService
   ) { }
 
   ngOnInit(): void {
@@ -50,25 +54,49 @@ export class IdentificationComponent implements OnInit {
         
 
         const auxOrder = {
-          orderNumber: Date(),
           products: products,
           identification: this.formCheckout.value,
           total: preco.reduce((acum, preco) => acum + preco)
-        };
-
-        
+        };        
 
         this.order.push(auxOrder);
         this.storage.remove(ORDER);
-        this.storage.save(ORDER, this.order);
-        
+        this.storage.save(ORDER, this.order);        
 
         this.storage.remove(CART_PRODUCT);
-
-
         this.router.navigate(['main/client/order']);
+        // this.postOrder(auxOrder);
+        
       }
     })
   }
+
+
+  // postOrder(order){
+  //   this.orderService.post(order).then(() =>{
+  //     this.dialogInformation = this.dialog.open(InformationComponent, {
+  //       panelClass: 'container-add',
+  //       data:{
+  //         error: false,
+  //         message: 'Pedido feito com sucesso!'
+  //       }
+  //     })
+  //     this.dialogInformation.afterClosed().subscribe(res => {
+  //       if (res) {
+  //         this.router.navigate(['main/client/order']);
+  //       }
+  //     })
+  //   }).catch(error => {
+  //     console.log(error);
+  //     this.dialogInformation = this.dialog.open(InformationComponent, {
+  //       panelClass: 'container-add',
+  //       data:{
+  //         error: true,
+  //         message: 'Erro!'
+  //       }
+  //     })
+
+  //   })
+  // }
 
 }
