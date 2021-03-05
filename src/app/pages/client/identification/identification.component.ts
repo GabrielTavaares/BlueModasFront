@@ -87,7 +87,7 @@ export class IdentificationComponent implements OnInit {
   //       }
   //     })
   //   }).catch(error => {
-  //     console.log(error);
+  //     
   //     this.dialogInformation = this.dialog.open(InformationComponent, {
   //       panelClass: 'container-add',
   //       data:{

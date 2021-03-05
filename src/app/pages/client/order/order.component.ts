@@ -24,7 +24,7 @@ export class OrderComponent implements OnInit {
 
   setOrder(){
     this.order = (this.storage.read(ORDER) || []);
-    console.log(this.order)
+    
     this.orderEmpty = (this.order.length < 1)
     
   }
