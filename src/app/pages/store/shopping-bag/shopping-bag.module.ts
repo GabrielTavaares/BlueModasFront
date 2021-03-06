@@ -16,7 +16,7 @@ import {MatDialogModule} from '@angular/material/dialog';
     ShoppingBagRoutingModule,
     MatButtonModule,
     MatDialogModule,
-    NgxMaskModule.forRoot() 
+    NgxMaskModule.forChild() 
   ]
 })
 export class ShoppingBagModule { }

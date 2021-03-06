@@ -31,7 +31,7 @@
                       <i class="fas fa-minus fa-2x icon-amount"></i>
                     </button>
 
-                    <input type="number" (blur)="changeValue(product)" [value]="product.quantidade" min="0"
+                    <input type="number" (blur)="changeValue($event.target.value, product)" [value]="product.quantidade" min="0"
                       class="input-amount-product" style="z-index: 2;">
 
                     <button class="btn-amount d-flex justify-content-center align-items-center" type="button"

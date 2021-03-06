@@ -14,7 +14,7 @@ import { LoadingModule } from '../../../../utils/loading/loading.module';
     CommonModule,
     ProductsRoutingModule,
     HttpClientModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forChild(),
     LoadingModule,    
   ]
 })

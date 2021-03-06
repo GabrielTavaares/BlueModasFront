@@ -70,6 +70,15 @@ export class ShoppingBagComponent implements OnInit {
     });
   }
 
+  changeValue(value, index){
+    if (value < 1) {
+      this.removeItem(index);
+      index.quantidade = 1;
+    } else {
+      index.quantidade = value;      
+    }
+  }
+
   countTotal() {
     const preco = this.cartProduct.map(i => i.preco * i.quantidade);
     this.total = preco.reduce((acum, preco) => acum + preco);

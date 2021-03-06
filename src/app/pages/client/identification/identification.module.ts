@@ -33,7 +33,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
     ReactiveFormsModule,
     RouterModule,
     MatDatepickerModule,
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forChild(),
     MatDialogModule
   ]
 })

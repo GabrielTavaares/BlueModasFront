@@ -63,6 +63,21 @@ export class ProductsComponent implements OnInit {
     index.isAdd = false;
   }
 
+  changeValue(value, index){
+    if(value < 0){
+      this.dialogInformation = this.dialog.open(InformationComponent, {
+        panelClass: 'container-add',
+        disableClose: true,
+        data: {
+          error: true,
+          message: 'A quantidade do produto deve ser maior que zero.'
+        }
+      })
+    } else {
+      index.quantidade = value;
+    }
+  }
+
   addCart(index) {
     this.cartProduct = (this.storage.read(CART_PRODUCT) || []);
 
@@ -89,9 +104,7 @@ export class ProductsComponent implements OnInit {
           message: 'A quantidade do produto deve ser maior que zero.'
         }
       })
-    }
-
-    
+    } 
 
     this.storage.save(CART_PRODUCT, this.cartProduct);
   }

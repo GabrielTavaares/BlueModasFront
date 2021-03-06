@@ -11,7 +11,7 @@ import { OrderRoutingModule } from './order-routing.module';
   imports: [
     CommonModule,
     OrderRoutingModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forChild()
   ]
 })
 export class OrderModule { }
